@@ -45,16 +45,17 @@ def chunk_data(data, chunk_size=256):
     return chunks
 
 
-def print_embedding_cost(texts):
+def calculate_embedding_cost(texts):
     import tiktoken
 
     enc = tiktoken.encoding_for_model("text-embedding-ada-002")
     total_tokens = sum([len(enc.encode(page.page_content)) for page in texts])
-    print(f"Total Tokens: {total_tokens}")
-    print(f"Embedding Cost in USD: {total_tokens / 1000 * 0.0004:.6f}")
+    return total_tokens, total_tokens / 1000 * 0.00002
+    # print(f"Total Tokens: {total_tokens}")
+    # print(f"Embedding Cost in USD: {total_tokens / 1000 * 0.0004:.6f}")
 
 
-def create_embeddings():
+def create_embeddings(chunks):
     from langchain.vectorstores import Chroma
     from langchain.embeddings.openai import OpenAIEmbeddings
 

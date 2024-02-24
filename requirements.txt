@@ -8,3 +8,4 @@ docx2txt
 langchain-openai
 langchain-pinecone
 python-dotenv
+streamlit
